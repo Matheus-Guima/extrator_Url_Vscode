@@ -5,7 +5,7 @@ import re
 #resultado = url.get_resultado()
 
 class ExtratorUrl:
-    def __init__(self, url):
+    def __init__(self, url): #Método especial de Inicialização  
         self.url = self.sanitiza_url(url)
         self.valida_url()
         
@@ -49,10 +49,25 @@ class ExtratorUrl:
             return resultado_sem_tratamento
         else:
             return resultado_com_tratamento 
+    
+    def __len__(self):
+        return len(self.url) 
+    
+    def __str__(self):
+        return f'{self.url} \nParâmetros: {self.get_texto_url()} \nUrl Base: {self.get_url_base()}' 
+    
+    def __eq__(self, other):
+        return self.url == other.url
+            
             
 extrator_url =ExtratorUrl("https://www.moeda.com.br/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100")
+# extrator_url2 =ExtratorUrl("https://www.moeda.com.br/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100")
 resultado = extrator_url.get_palavra("quantidade")
-print(resultado) 
+
+print(f'O tamanho da Url é: {len(extrator_url)}')
+print(extrator_url)
+print(f'O valor desejado é: {resultado}') 
+# print(extrator_url == extrator_url2)
         
 
             

@@ -1,0 +1,23 @@
+from extrator_com_class  import ExtratorUrl
+
+class Conversor(ExtratorUrl):    
+    @property
+    def conversor(self):
+        dolar = 4.80
+        origem = self.get_palavra('moedaOrigem')
+        destino = self.get_palavra('moedaDestino')
+        quantidade = float(self.get_palavra('quantidade'))
+        
+        calculo = float(quantidade * dolar)
+        print (f'A moeda de origem foi {origem} e a moeda de destino foi {destino}, o resultado é {calculo}')
+    
+
+conversor_dolar = Conversor("https://www.moeda.com.br/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100")
+print(conversor_dolar.conversor)   
+            
+        
+        
+        
+        
+        
+      
