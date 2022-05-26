@@ -1,3 +1,5 @@
+import re
+
 #url = "https://www.moeda.com.br/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100"
 #url = Url("https://www.moeda.com.br/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100")
 #resultado = url.get_resultado()
@@ -16,6 +18,14 @@ class ExtratorUrl:
     def valida_url(self):
         if(not self.url):
             raise ValueError("A URL ESTÁ VAZIA")
+        
+        padrao_url = re.compile('(http(s)?://)?(www.)?moeda.com(.br)?/cambio')
+        match = padrao_url.match(self.url)
+        if(not match):
+            raise ValueError("A URL NÃO É VÁLIDA.")
+        else:
+            print("A URL é válida")
+
     
     def get_url_base(self):
         indice_interrocao = self.url.find('?')
